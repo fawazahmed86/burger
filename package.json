@@ -10,10 +10,7 @@
     "mysql": "^2.15.0"
   },
   "devDependencies": {},
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
-  },
+  
   "repository": {
     "type": "git",
     "url": "git+https://github.com/fawazahmed86/burger.git"
@@ -23,5 +20,8 @@
   "bugs": {
     "url": "https://github.com/fawazahmed86/burger/issues"
   },
-  "homepage": "https://github.com/fawazahmed86/burger#readme"
+  "homepage": "https://github.com/fawazahmed86/burger#readme",
+  "scripts": {
+    "start": "node server.js"
+  }
 }
