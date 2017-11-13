@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+  <meta charset="utf-8">
+  <title>Taste your Burger</title>
+  
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="/assets/css/style.css">
+  <script src="https://code.jquery.com/jquery.js"></script>
+</head>
+
+<body>
+  <header class="container">
+    <div class="header">
+      <img src="/assets/images/image-1.jpg" class="top">
+      <h2>Welcome to the Burger App!</h2>
+      {{!-- <br> --}}
+      <i><sub>Below you can Make and Devour BURGERS!!!</sub></i>
+    </div>
+  </header>
+  <div class="container">
+    <div class="well newBurger">
+      <form class="navbar-form" id="newBurgerForm">
+        <div class="form-group">
+          <input type="text" placeholder="Enter new burger" class="form-control" id="burgerName">
+        </div>
+        <button type="submit" class="btn btn-secondary" id="addNewBurger">Submit</button>
+      </form>
+    </div>
+    {{{body}}}
+  </div>
+</body>
+<script>
+
+$(document).ready(function(){
+  
+  
+  $("#addNewBurger").on("click", function(event){
+    var name = $("#burgerName").val().trim();
+
+    $.ajax("/api/burger", {
+      type: "POST",
+      data: {burgerName: name}
+    }).then(function(){
+      location.reload();
+    });
+  });
+
+  $(".removeit").on("click", function(event){
+    var id = $(this).data("id");
+
+    $.ajax("/api/burger/" + id, {
+      type: "DELETE",
+    }).then(function(){
+      location.reload();
+    });
+  });
+  
+  $(".destroyBurger").on("click", function(event){
+    var id = $(this).data("id");
+
+    $.ajax("/api/burger/" + id, {
+      type: "PUT",
+      data: {devoured: true}
+    }).then(function(){
+      location.reload();
+    });
+  });
+
+});
+
+</script>
+</html>
