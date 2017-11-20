@@ -11,6 +11,7 @@ router.get("/", function(request, response) {
 });
 
 router.post("/api/burger", function(request, response){
+  console.log(response);
   burger.create({
     burger_name: request.body.burgerName,
     devoured: (request.body.devoured) ? eval(request.body.devoured) : false

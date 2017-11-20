@@ -2,8 +2,9 @@ var connection = require("./connection.js");
 
 var orm = {
   all: function(table, callBack){
-    var queryStr = "SELECT * FROM " + table + ";";
-    connection.query(queryStr, function(error, result){
+    var queryString = "SELECT * FROM ";
+        queryString+= table + ";";
+    connection.query(queryString, function(error, result){
       if(error){
         throw error;
       }
@@ -13,8 +14,8 @@ var orm = {
 
   create: function(table, values, callBack){
     var queryString = "INSERT INTO ";
-    queryString+=table;
-    queryString+= " SET ? ";
+        queryString+= table;
+        queryString+= " SET ? ";
     
     connection.query(queryString, values, function(error, result) {
       if (error) {
@@ -25,7 +26,8 @@ var orm = {
   },
 
   update: function(table, values, condition, callBack){
-    var queryString = "UPDATE " + table + " SET ? WHERE " + condition;
+    var queryString = "UPDATE " + table;
+        queryString+= " SET ? WHERE " + condition;
     connection.query(queryString, values, function(error, result) {
       if (error) {
         throw error;
@@ -35,7 +37,8 @@ var orm = {
   },
 
   delete: function(table, condition, callBack){
-    var queryString = "DELETE FROM " + table + " WHERE " + condition;
+    var queryString = "DELETE FROM " + table;
+        queryString += " WHERE " + condition;
     connection.query(queryString, function(error, result) {
       if (error) {
         throw error;
